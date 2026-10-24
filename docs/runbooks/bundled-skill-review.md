@@ -32,8 +32,8 @@ hosted multi-user identity, or execution authority is claimed.
 
 ## Remaining work
 
-Formal approve/reject controls and hosted identity remain in issues #4, #8,
-and #10. Direct local-browser visual review remains open; API and packaged
+Formal approve/reject controls and hosted identity remain in issues #18 and #8,
+with shared review machinery in #4 and #10. Direct local-browser visual review remains open; API and packaged
 behavior are verified.
 
 ## PR handoff

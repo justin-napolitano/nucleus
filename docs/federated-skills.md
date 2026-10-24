@@ -39,7 +39,8 @@ bundled skills appear in `review` state. Expanding **Review skill definition**
 shows the pinned `SKILL.md`, source commit/path, and license. The normal MCP
 catalog tools exclude review candidates so an agent cannot load their
 instructions before approval. The browser route is loopback-only; hosted
-multi-user access and formal accept/reject controls remain planned work.
+multi-user access and [formal accept/reject controls](https://github.com/justin-napolitano/nucleus/issues/18)
+remain planned work.
 
 ## Boundary
 

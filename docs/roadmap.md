@@ -25,7 +25,8 @@ notebooks, skills, or workflows. A repo claim is not proof of deployed state.
 
 ## Second pass
 
-[Review exact repo snapshots](https://github.com/justin-napolitano/nucleus/issues/4)
+[Review the bundled skill candidates](https://github.com/justin-napolitano/nucleus/issues/18),
+[review exact repo snapshots](https://github.com/justin-napolitano/nucleus/issues/4),
 and [contribute through source-repo PRs](https://github.com/justin-napolitano/nucleus/issues/10).
 Add [hosted operation](https://github.com/justin-napolitano/nucleus/issues/8)
 after identity, durability, and revocation gates pass.
