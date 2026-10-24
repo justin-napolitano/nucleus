@@ -3,7 +3,7 @@
 
 ## Status and boundary
 
-Apache-2.0 release candidate for a standalone Nucleus foundation. The default
+Published Apache-2.0 standalone Nucleus foundation. The default
 registry is empty. It serves a local catalog UI/API and read-only MCP tools.
 It has no enterprise sign-in, hosted execution, source adapters, approval flow,
 or parity claim with the private application.
@@ -12,9 +12,10 @@ or parity claim with the private application.
 
 | Stage | Evidence and result | Next action |
 | --- | --- | --- |
-| Selection | PASS: exact staged tree contains only generic contracts, local runtime, UI, docs, and synthetic tests; organizational registries excluded | Publish |
-| Package | PASS: wheel contains schemas, UI assets, and Apache license | Commit and publish |
-| Behavior | PASS: five synthetic tests and installed-wheel MCP smoke test | Verify remote visibility |
+| Selection | PASS: exact staged tree contains only generic contracts, local runtime, UI, docs, and synthetic tests; organizational registries excluded | Maintain boundary in future PRs |
+| Package | PASS: wheel contains schemas, UI assets, and Apache license | Keep packaging verified in CI |
+| Behavior | PASS: five synthetic tests and installed-wheel MCP smoke test | Extend with future features |
+| Publication | PASS: GitHub reports PUBLIC and Apache-2.0; first Verify workflow passed | Begin parity work in separate PRs |
 
 ## Current evidence
 
@@ -30,15 +31,18 @@ or parity claim with the private application.
 - `git diff --cached --check`: PASS. `git grep --cached` for organizational
   names, account identifiers, source bindings, and credential markers found
   only the intentional `*.secret*` ignore rule.
+- `gh repo view justin-napolitano/nucleus --json name,visibility,url,licenseInfo,defaultBranchRef`:
+  PASS, public `main`, GitHub recognized Apache-2.0.
+- `gh run watch 40060526616 --repo justin-napolitano/nucleus --exit-status`:
+  PASS, first foundation workflow.
 
 ## Remaining work
 
-Publish under the approved personal account, verify public visibility and
-license. Identity, authoring, hosted execution,
-and private application parity are separate delivery units in the roadmap.
+Identity, authoring, hosted execution, and private application parity are
+separate delivery units in the roadmap.
 
 ## PR handoff
 
-This is a fresh standalone history with no private-repo ancestry. The review
-scope is the complete initial tree. Organizational registry instances and
-third-party skill packages are excluded.
+The initial release has fresh standalone history and no private-repo ancestry.
+Future PRs should review each parity unit against the roadmap. Organizational
+registry instances and third-party skill packages stay excluded.
