@@ -21,9 +21,7 @@
         }
       },
       "required": [
-        "instructionsFile",
-        "inputSchemaFile",
-        "outputSchemaFile"
+        "instructionsFile"
       ]
     }
   ]

@@ -91,6 +91,21 @@ def verify_package(checkout: Path, name: str, lock: dict[str, Any]) -> Path:
         "-C", str(checkout), "status", "--porcelain", "--ignored", "--", str(package), timeout=5
     ):
         raise SkillSourceError("source-not-clean")
+    if _hash_package_files(package) != lock["packages"][name]["files"]:
+        raise SkillSourceError("skill-content-mismatch")
+    return package
+
+
+def verify_bundled_candidate(package: Path, name: str, lock: dict[str, Any]) -> None:
+    """Confirm packaged review content still matches the pinned source lock."""
+    if name not in lock["packages"] or package.is_symlink() or not package.is_dir():
+        raise SkillSourceError("skill-unavailable")
+    if _hash_package_files(package, exclude_object=True) != lock["packages"][name]["files"]:
+        raise SkillSourceError("skill-content-mismatch")
+
+
+def _hash_package_files(package: Path, *, exclude_object: bool = False) -> dict[str, str]:
+    """Hash a bounded, symlink-free skill tree; ignore only Nucleus metadata."""
     actual: dict[str, str] = {}
     total = 0
     for path in sorted(package.rglob("*")):
@@ -99,14 +114,14 @@ def verify_package(checkout: Path, name: str, lock: dict[str, Any]) -> Path:
         if not path.is_file():
             continue
         relative = path.relative_to(package).as_posix()
+        if exclude_object and relative == "object.json":
+            continue
         data = path.read_bytes()
         total += len(data)
         if len(actual) >= MAX_FILES or total > MAX_BYTES:
             raise SkillSourceError("skill-too-large")
         actual[relative] = hashlib.sha256(data).hexdigest()
-    if actual != lock["packages"][name]["files"]:
-        raise SkillSourceError("skill-content-mismatch")
-    return package
+    return actual
 
 
 def install_from_checkout(

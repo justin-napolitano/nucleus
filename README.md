@@ -1,18 +1,22 @@
 # Nucleus
 
 Nucleus is an open source foundation for discovering governed data products and
-agent capabilities. This repository starts with an **empty registry**. It
-contains no organizational data domains, metrics, products, credentials, or
-source bindings. A separate pinned Anthropic source lock lists 13 optional
-Apache-2.0 skills; none is installed or activated by default.
+agent capabilities. Its user registry starts empty: it contains no
+organizational domains, metrics, products, credentials, or source bindings.
+The application bundles 13 pinned Apache-2.0 Anthropic skill snapshots as
+**review candidates**. They are visible in the Library and remain unapproved
+and non-executable in Nucleus.
 
 ## What works now
 
 - A local Library UI and read-only catalog API.
+- A bundled review queue with the 13 skill instructions, source paths, commit,
+  licenses, and file inventories, available from an installed package.
 - Versioned JSON Schema contracts for domains, products, metrics, skills,
   workflows, tools, MCP servers, and agents.
 - A read-only MCP endpoint with `nucleus_list_objects` and
-  `nucleus_get_object` tools.
+  `nucleus_get_object` tools. Review candidates are excluded from those agent
+  tools until an approval workflow exists.
 - Immediate correction and deletion readback from local registry packages.
 - Fail-closed package validation and a fixed loopback host. Capability
   declarations never activate execution.
@@ -33,7 +37,7 @@ python -m venv .venv
 .venv/bin/nucleus api --registry registry --port 8765
 ```
 
-Open <http://127.0.0.1:8765/>. The Library should report zero items. The API
+Open <http://127.0.0.1:8765/>. The Library should show 13 review candidates. The API
 health endpoint is `/health`; `/v1/capabilities` lists the supported kinds and
 tools. `POST /mcp` accepts bounded JSON-RPC MCP requests. A local stdio mode is
 also available with `.venv/bin/nucleus mcp --registry registry`.
@@ -43,13 +47,15 @@ also available with `.venv/bin/nucleus mcp --registry registry`.
 Choose a kind schema in [`schemas/`](src/nucleus/resources/schemas/) and put its `object.json` under
 the corresponding directory in `registry/`. Package files named in `files`
 must be present under the same version directory. An object becomes visible in
-the Library but remains `executionEligible: false`. The repository contains no
-sample domain package; tests create fictional packages in temporary directories.
+the Library but remains `executionEligible: false`. The external registry
+contains no sample domain package; tests create fictional packages in
+temporary directories.
 
 ## Use Anthropic skills on a machine
 
-Git is required for the pinned public source fetch. The skills are not copied
-into this repository or installed automatically.
+Git is required for the pinned public source fetch during machine installation.
+The application bundles review snapshots, but does not install or activate
+skills in an agent automatically.
 
 ```bash
 .venv/bin/nucleus skills list

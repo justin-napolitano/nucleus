@@ -32,7 +32,7 @@ async function load() {
     previous.disabled = offset === 0;
     next.disabled = data.nextOffset === null;
     if (!data.items.length) {
-      empty(data.total ? "No matches on this page" : "Your Library starts empty", data.total ? "Try another search or return to the first page." : "Add reviewed registry packages to make domains, products, skills, workflows, and tools discoverable here.");
+      empty("No matches in this view", "Try another search or category. Imported definitions will appear after an explicit registration.");
       return;
     }
     results.replaceChildren(...data.items.map(item => {
@@ -49,6 +49,34 @@ async function load() {
       meta.className = "meta";
       meta.textContent = `${item.objectId} · ${item.state} · execution disabled`;
       card.append(type, heading, description, meta);
+      if (item.kind === "Skill" && item.state === "review") {
+        const details = document.createElement("details");
+        details.className = "skill-review";
+        const summary = document.createElement("summary");
+        summary.textContent = "Review skill definition";
+        const content = document.createElement("div");
+        content.textContent = "Open to load the pinned instructions.";
+        details.append(summary, content);
+        details.addEventListener("toggle", async () => {
+          if (!details.open || details.dataset.loaded) return;
+          content.textContent = "Loading reviewed source…";
+          try {
+            const params = new URLSearchParams({object_id: item.objectId});
+            const response = await fetch(`/v1/review/skill?${params}`, {headers: {Accept: "application/json"}});
+            if (!response.ok) throw new Error("unavailable");
+            const record = await response.json();
+            const provenance = document.createElement("p");
+            provenance.textContent = `${record.source.repository} · ${record.source.commit} · ${record.source.path} · ${record.license.id} · review pending`;
+            const instructions = document.createElement("pre");
+            instructions.textContent = record.instructionsText;
+            content.replaceChildren(provenance, instructions);
+            details.dataset.loaded = "true";
+          } catch {
+            content.textContent = "The pinned definition is unavailable. Reload or check the package integrity.";
+          }
+        });
+        card.append(details);
+      }
       return card;
     }));
   } catch {

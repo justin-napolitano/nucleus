@@ -3,10 +3,11 @@
 
 ## Status and boundary
 
-The public branch adds an optional pinned-source installer for 13 reviewed
-Apache-2.0 Anthropic skills. It does not bundle skill bodies, register them in
-the runtime catalog, or run scripts. The four separately licensed document
-skills remain excluded. The broader repo sync and wikis are open issues.
+This records the 0.2.0 pinned-source installer stage for 13 reviewed
+Apache-2.0 Anthropic skills. That stage did not bundle skill bodies or register
+them in the runtime catalog. The next stage is tracked in
+[bundled skill review](bundled-skill-review.md). The four separately licensed
+document skills remain excluded.
 
 ## Stage ledger
 
@@ -34,7 +35,8 @@ skills remain excluded. The broader repo sync and wikis are open issues.
 ## Remaining work
 
 Generic skills-wiki sync remains tracked in issue #15. Other machines run the
-documented install command locally.
+documented install command locally. The 0.3.0 bundled review stage is recorded
+in the linked runbook.
 
 ## PR handoff
 
