@@ -1,21 +1,35 @@
-# Parity roadmap
+# Federated Nucleus roadmap
 
-## Current foundation
+## Decision
 
-The public repo has the catalog model, empty Library, read-only API/MCP, and
-generic domain, product, metric, skill, workflow, tool, MCP-server and agent
-contracts. It has a fresh history and no organizational packages.
+Project repositories remain the source of truth. Nucleus pulls metadata at an
+exact commit and presents a data wiki and skills wiki with source citations.
+Repository files are inert input: catalog sync does not run migrations, dbt,
+notebooks, skills, or workflows. A repo claim is not proof of deployed state.
 
-## Next delivery units
+## First usable path
 
-1. Move the private Nucleus identity and authorization model behind portable
-   adapters, with synthetic local proof and no organization-specific defaults.
-2. Add governed authoring proposals, owner review, immutable release receipts,
-   and Git-backed domain/skill/workflow registration.
-3. Port the full frontend and parity tests after removing organizational
-   content, private hostnames, and deployment-specific routes.
-4. Add optional hosted MCP/API deployment only after identity, revocation,
-   durability and source-execution gates pass.
+1. [Register and sync repos](https://github.com/justin-napolitano/nucleus/issues/1)
+   with a [provenance envelope](https://github.com/justin-napolitano/nucleus/issues/11).
+2. Parse [migrations and contracts](https://github.com/justin-napolitano/nucleus/issues/12),
+   [dbt dependency graphs](https://github.com/justin-napolitano/nucleus/issues/13),
+   and [skills](https://github.com/justin-napolitano/nucleus/issues/15). Add
+   [analytics assets](https://github.com/justin-napolitano/nucleus/issues/14)
+   after choosing an example format.
+3. Show the connected [data and skills wikis](https://github.com/justin-napolitano/nucleus/issues/2)
+   in the [Library](https://github.com/justin-napolitano/nucleus/issues/5).
+4. Add [identity and authorization](https://github.com/justin-napolitano/nucleus/issues/3),
+   [source-cited chat](https://github.com/justin-napolitano/nucleus/issues/9),
+   [API/MCP compatibility](https://github.com/justin-napolitano/nucleus/issues/6),
+   and [authorized agent routing](https://github.com/justin-napolitano/nucleus/issues/7).
 
-External skill packages are not bundled. A future optional plugin can use
-upstream packages only after its own license, owner selection, and host review.
+## Second pass
+
+[Review exact repo snapshots](https://github.com/justin-napolitano/nucleus/issues/4)
+and [contribute through source-repo PRs](https://github.com/justin-napolitano/nucleus/issues/10).
+Add [hosted operation](https://github.com/justin-napolitano/nucleus/issues/8)
+after identity, durability, and revocation gates pass.
+
+The current public code is a local read-only foundation. Its Anthropic skill
+installer is an optional first federated source integration; it does not claim
+the wiki, repo sync, or hosted features above are implemented.

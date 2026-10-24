@@ -12,3 +12,4 @@ jobs:
       - run: pytest -q
       - run: ruff check .
       - run: python -m nucleus.app --help
+      - run: python -m nucleus.app skills list

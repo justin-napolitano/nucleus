@@ -2,8 +2,9 @@
 
 Nucleus is an open source foundation for discovering governed data products and
 agent capabilities. This repository starts with an **empty registry**. It
-contains no organizational data domains, metrics, products, skill selections,
-credentials, or source bindings.
+contains no organizational data domains, metrics, products, credentials, or
+source bindings. A separate pinned Anthropic source lock lists 13 optional
+Apache-2.0 skills; none is installed or activated by default.
 
 ## What works now
 
@@ -15,6 +16,8 @@ credentials, or source bindings.
 - Immediate correction and deletion readback from local registry packages.
 - Fail-closed package validation and a fixed loopback host. Capability
   declarations never activate execution.
+- Offline discovery and explicit local installation of 13 pinned Anthropic
+  skills, with file digest and license verification.
 
 This is the public foundation. Enterprise identity, authoring and approval,
 hosted execution, and parity with the private Nucleus application remain
@@ -42,6 +45,24 @@ the corresponding directory in `registry/`. Package files named in `files`
 must be present under the same version directory. An object becomes visible in
 the Library but remains `executionEligible: false`. The repository contains no
 sample domain package; tests create fictional packages in temporary directories.
+
+## Use Anthropic skills on a machine
+
+Git is required for the pinned public source fetch. The skills are not copied
+into this repository or installed automatically.
+
+```bash
+.venv/bin/nucleus skills list
+.venv/bin/nucleus skills install frontend-design mcp-builder
+# Or install the full reviewed Apache-2.0 set:
+.venv/bin/nucleus skills install --all
+```
+
+The default destination is `~/.codex/skills`; use `--dest /path/to/skills` for
+another local agent or a disposable proof. Existing skill directories are never
+overwritten. Start a new Codex session after installing. The four Anthropic
+document skills with separate terms are excluded. See the
+[federated skills guide](docs/federated-skills.md) for provenance and limits.
 
 ## Development
 
