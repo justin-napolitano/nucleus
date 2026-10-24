@@ -14,7 +14,7 @@ skills remain excluded. The broader repo sync and wikis are open issues.
 | --- | --- | --- |
 | Source and license | PASS: pinned public commit checked out; 13 inventories and license digests matched | Retain exact pin in review |
 | Installer | PASS: all 13 installed to a disposable root and this machine's Codex skills root with receipts | Verify after merge |
-| Synthetic checks | PASS: 9 tests, Ruff, 0.2.0 wheel build, and public PR checks | Merge PR |
+| Synthetic checks | PASS: 9 tests, Ruff, 0.2.0 wheel build, PR checks, and main CI | Continue generic federation in issue #15 |
 | Federation plan | PASS: issues #1–#15 now distinguish repo sync, extraction, typed adapters, wikis, and source-repo review | Merge plan with installer |
 
 ## Current evidence
@@ -29,12 +29,12 @@ skills remain excluded. The broader repo sync and wikis are open issues.
 - `UV_CACHE_DIR=/private/tmp/nucleus-uv-cache uv build`: PASS, 0.2.0 source archive and wheel.
 - Installed the 0.2.0 wheel in a disposable environment and ran `nucleus skills list` from outside the checkout: PASS, all 13 names returned offline.
 - `gh pr checks 16 --repo justin-napolitano/nucleus`: PASS, foundation and GitGuardian checks.
+- PR #16 merged as `bc4ea6a`; main Verify run `40064149126` passed.
 
 ## Remaining work
 
-Merge the reviewed PR. Generic
-skills-wiki sync remains tracked in issue #15. Other machines run the documented
-install command locally.
+Generic skills-wiki sync remains tracked in issue #15. Other machines run the
+documented install command locally.
 
 ## PR handoff
 
