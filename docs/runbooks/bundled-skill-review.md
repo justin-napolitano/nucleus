@@ -15,7 +15,7 @@ hosted multi-user identity, or execution authority is claimed.
 | Source snapshot | PASS: 13 upstream packages copied byte for byte; 160 files match the pinned lock | Audit staged tree |
 | Catalog | PASS: 13 review objects with exact source, license, and disabled execution | Validate installed wheel |
 | Review UI/API | PASS: loopback API returns 13 review entries and instructions; browser automation through Edge returned 403 under cross-site policy | Use direct local browser for visual review |
-| Validation | PASS: 11 tests and Ruff; 0.3.0 wheel contains 13 objects, instructions, and licenses | Run PR CI |
+| Validation | PASS: 11 tests, Ruff, 0.3.0 wheel, foundation and security PR checks | Merge PR |
 
 ## Current evidence
 
@@ -27,11 +27,11 @@ hosted multi-user identity, or execution authority is claimed.
 - Direct loopback `GET /v1/catalog?kind=Skill`: PASS, 200 with 13 disabled review candidates.
 - Browser extension navigation: PARTIAL, returned 403 because the local server rejected its cross-site request. No visual claim.
 - `git diff --cached --check`: PASS with vendored upstream files excluded from whitespace normalization through `.gitattributes`; their locked bytes remain unchanged.
+- `gh pr checks 17 --repo justin-napolitano/nucleus`: PASS, foundation and GitGuardian checks.
 
 ## Remaining work
 
-Review the exact public diff, run PR checks, merge after passing gates, and
-record the merged result. Formal approve/reject controls and hosted identity
+Merge the reviewed PR and record the merged result. Formal approve/reject controls and hosted identity
 remain in issues #4, #8, and #10.
 
 ## PR handoff
