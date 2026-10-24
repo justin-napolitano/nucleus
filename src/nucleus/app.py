@@ -179,6 +179,11 @@ def make_server(catalog: Catalog, static: Path, port: int) -> ThreadingHTTPServe
 
 def main() -> None:
     """Run the local API or stdio MCP against an explicit empty-or-populated registry."""
+    if sys.argv[1:2] == ["skills"]:
+        from nucleus.skills import main as skills_main
+
+        skills_main(sys.argv[2:])
+        return
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=("api", "mcp"))
     parser.add_argument("--registry", type=Path, default=Path("registry"))
