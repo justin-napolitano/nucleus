@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "registry.nucleus/v0.1",
+  "kind": "Skill",
+  "id": "anthropic-theme-factory",
+  "version": "0.0.0-dbd4588f",
+  "state": "review",
+  "displayName": "theme-factory",
+  "description": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
+  "owners": [
+    {
+      "type": "group",
+      "id": "anthropics"
+    }
+  ],
+  "files": [
+    "LICENSE.txt",
+    "SKILL.md",
+    "theme-showcase.pdf",
+    "themes/arctic-frost.md",
+    "themes/botanical-garden.md",
+    "themes/desert-rose.md",
+    "themes/forest-canopy.md",
+    "themes/golden-hour.md",
+    "themes/midnight-galaxy.md",
+    "themes/modern-minimalist.md",
+    "themes/ocean-depths.md",
+    "themes/sunset-boulevard.md",
+    "themes/tech-innovation.md"
+  ],
+  "references": [],
+  "instructionsFile": "SKILL.md",
+  "license": {
+    "id": "Apache-2.0",
+    "file": "LICENSE.txt"
+  },
+  "source": {
+    "repository": "https://github.com/anthropics/skills.git",
+    "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+    "path": "skills/theme-factory"
+  },
+  "reviewRequired": true
+}

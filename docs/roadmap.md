@@ -30,6 +30,7 @@ and [contribute through source-repo PRs](https://github.com/justin-napolitano/nu
 Add [hosted operation](https://github.com/justin-napolitano/nucleus/issues/8)
 after identity, durability, and revocation gates pass.
 
-The current public code is a local read-only foundation. Its Anthropic skill
-installer is an optional first federated source integration; it does not claim
-the wiki, repo sync, or hosted features above are implemented.
+The current public code is a local read-only foundation with 13 bundled skill
+review candidates and an optional Anthropic skill installer. It does not claim
+generic wiki sync, source-repo review decisions, or hosted features above are
+implemented.

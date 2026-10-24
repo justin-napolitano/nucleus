@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "registry.nucleus/v0.1",
+  "kind": "Skill",
+  "id": "anthropic-algorithmic-art",
+  "version": "0.0.0-dbd4588f",
+  "state": "review",
+  "displayName": "algorithmic-art",
+  "description": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.",
+  "owners": [
+    {
+      "type": "group",
+      "id": "anthropics"
+    }
+  ],
+  "files": [
+    "LICENSE.txt",
+    "SKILL.md",
+    "templates/generator_template.js",
+    "templates/viewer.html"
+  ],
+  "references": [],
+  "instructionsFile": "SKILL.md",
+  "license": {
+    "id": "Apache-2.0",
+    "file": "LICENSE.txt"
+  },
+  "source": {
+    "repository": "https://github.com/anthropics/skills.git",
+    "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+    "path": "skills/algorithmic-art"
+  },
+  "reviewRequired": true
+}

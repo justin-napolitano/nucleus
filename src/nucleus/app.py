@@ -13,12 +13,13 @@ from urllib.parse import parse_qs, urlsplit
 
 from nucleus.mcp import handle_message
 from nucleus.registry import KINDS, Catalog, RegistryError
+from nucleus.skills import load_lock
 
 MAX_REQUEST = 1_000_000
 TOOLS = [
     {
         "name": "nucleus_list_objects",
-        "description": "List governed registry metadata; registrations do not grant execution.",
+        "description": "List published registry metadata; registration does not grant execution.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -32,7 +33,7 @@ TOOLS = [
     },
     {
         "name": "nucleus_get_object",
-        "description": "Read one exact registry object by its returned ID.",
+        "description": "Read one exact published registry object by its returned ID.",
         "inputSchema": {
             "type": "object",
             "properties": {"object_id": {"type": "string", "maxLength": 250}},
@@ -57,13 +58,13 @@ def invoke(catalog: Catalog, name: str, arguments: Any) -> dict[str, Any]:
             or type(limit) is not int
         ):
             raise ValueError("invalid-arguments")
-        return catalog.list(kind=kind, query=query, offset=offset, limit=limit)
+        return catalog.list(kind=kind, query=query, offset=offset, limit=limit, published_only=True)
     if (
         name == "nucleus_get_object"
         and set(arguments) == {"object_id"}
         and isinstance(arguments["object_id"], str)
     ):
-        return catalog.get(arguments["object_id"])
+        return catalog.get(arguments["object_id"], published_only=True)
     raise ValueError("unknown-or-invalid-tool")
 
 
@@ -121,12 +122,16 @@ def make_server(catalog: Catalog, static: Path, port: int) -> ThreadingHTTPServe
                         "sourceExecution": False,
                         "mcpTools": [tool["name"] for tool in TOOLS],
                     }
-                elif route.path in {"/v1/catalog", "/v1/catalog/object"}:
+                elif route.path in {"/v1/catalog", "/v1/catalog/object", "/v1/review/skill"}:
                     params = parse_qs(route.query, strict_parsing=True)
                     if any(len(values) != 1 for values in params.values()):
                         raise ValueError("invalid-query")
                     args = {key: values[0] for key, values in params.items()}
-                    if route.path.endswith("/object"):
+                    if route.path == "/v1/review/skill":
+                        if set(args) != {"object_id"}:
+                            raise ValueError("invalid-query")
+                        payload = catalog.review_skill(args["object_id"])
+                    elif route.path.endswith("/object"):
                         if set(args) != {"object_id"}:
                             raise ValueError("invalid-query")
                         payload = catalog.get(args["object_id"])
@@ -190,7 +195,13 @@ def main() -> None:
     parser.add_argument("--port", type=int, default=8765)
     args = parser.parse_args()
     package = Path(__file__).resolve().parent
-    catalog = Catalog(args.registry, package / "resources" / "schemas")
+    resources = package / "resources"
+    catalog = Catalog(
+        args.registry,
+        resources / "schemas",
+        resources / "registry",
+        load_lock(),
+    )
     if args.mode == "mcp":
         for line in sys.stdin.buffer:
             if len(line) > MAX_REQUEST:

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "registry.nucleus/v0.1",
+  "kind": "Skill",
+  "id": "anthropic-brand-guidelines",
+  "version": "0.0.0-dbd4588f",
+  "state": "review",
+  "displayName": "brand-guidelines",
+  "description": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
+  "owners": [
+    {
+      "type": "group",
+      "id": "anthropics"
+    }
+  ],
+  "files": [
+    "LICENSE.txt",
+    "SKILL.md"
+  ],
+  "references": [],
+  "instructionsFile": "SKILL.md",
+  "license": {
+    "id": "Apache-2.0",
+    "file": "LICENSE.txt"
+  },
+  "source": {
+    "repository": "https://github.com/anthropics/skills.git",
+    "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+    "path": "skills/brand-guidelines"
+  },
+  "reviewRequired": true
+}

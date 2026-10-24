@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "registry.nucleus/v0.1",
+  "kind": "Skill",
+  "id": "anthropic-internal-comms",
+  "version": "0.0.0-dbd4588f",
+  "state": "review",
+  "displayName": "internal-comms",
+  "description": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).",
+  "owners": [
+    {
+      "type": "group",
+      "id": "anthropics"
+    }
+  ],
+  "files": [
+    "LICENSE.txt",
+    "SKILL.md",
+    "examples/3p-updates.md",
+    "examples/company-newsletter.md",
+    "examples/faq-answers.md",
+    "examples/general-comms.md"
+  ],
+  "references": [],
+  "instructionsFile": "SKILL.md",
+  "license": {
+    "id": "Apache-2.0",
+    "file": "LICENSE.txt"
+  },
+  "source": {
+    "repository": "https://github.com/anthropics/skills.git",
+    "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+    "path": "skills/internal-comms"
+  },
+  "reviewRequired": true
+}
