@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#143847">
+  <title>Nucleus · Library</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="masthead"><div class="brand"><span class="mark" aria-hidden="true">◉</span><span>Nucleus</span></div><span class="badge">Local preview</span></header>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">Governed knowledge for data and agents</p>
+      <h1 id="page-title">Find what your organization knows.</h1>
+      <p class="intro">Browse registered data products, domains, skills, workflows, tools, and agents. This installation starts empty so teams can add their own reviewed definitions.</p>
+      <div class="boundary"><strong>Read-only foundation</strong><span>Registrations describe capabilities. They do not grant access or run a source operation.</span></div>
+    </section>
+    <section class="library" aria-labelledby="library-title">
+      <div class="section-title"><div><p class="eyebrow">Catalog</p><h2 id="library-title">Library</h2></div><span id="total" aria-live="polite">— items</span></div>
+      <div class="filters"><label>Search definitions<input id="search" type="search" maxlength="200" placeholder="Name or description"></label><label>Type<select id="kind"><option value="">All types</option><option>DataDomain</option><option>DataProduct</option><option>Metric</option><option>Skill</option><option>Workflow</option><option>Tool</option><option>McpServer</option><option>Agent</option></select></label></div>
+      <div id="results" class="results" aria-live="polite"></div>
+      <div class="pager"><button id="previous" type="button">Previous</button><span id="page">Page 1</span><button id="next" type="button">Next</button></div>
+    </section>
+    <section class="developer" aria-labelledby="developer-title"><p class="eyebrow">For builders</p><h2 id="developer-title">Connect an agent</h2><p>The local MCP endpoint is <code>http://127.0.0.1:8765/mcp</code>. It exposes two bounded read tools: <code>nucleus_list_objects</code> and <code>nucleus_get_object</code>.</p><p>Domain, skill, workflow, and tool contracts live in <code>src/nucleus/resources/schemas/</code>. Registering an object never activates its declared tool or workflow.</p></section>
+  </main>
+  <footer>Nucleus open source foundation · Apache-2.0</footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nucleus.example/schemas/workflow.schema.json",
+  "allOf": [
+    {
+      "$ref": "registry-object.schema.json"
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "Workflow"
+        },
+        "agentRef": {
+          "type": "string",
+          "pattern": "^registry://Agent/"
+        },
+        "stepsFile": {
+          "type": "string"
+        },
+        "outputSchemaFile": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "agentRef",
+        "stepsFile",
+        "outputSchemaFile"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nucleus.example/schemas/data-product.schema.json",
+  "allOf": [
+    {
+      "$ref": "registry-object.schema.json"
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "DataProduct"
+        },
+        "domainRef": {
+          "type": "string",
+          "pattern": "^registry://DataDomain/"
+        },
+        "classification": {
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted"
+          ]
+        },
+        "contractSchemaFile": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "domainRef",
+        "classification",
+        "contractSchemaFile"
+      ]
+    }
+  ]
+}

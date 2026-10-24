@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nucleus.example/schemas/skill.schema.json",
+  "allOf": [
+    {
+      "$ref": "registry-object.schema.json"
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "Skill"
+        },
+        "instructionsFile": {
+          "type": "string"
+        },
+        "inputSchemaFile": {
+          "type": "string"
+        },
+        "outputSchemaFile": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "instructionsFile",
+        "inputSchemaFile",
+        "outputSchemaFile"
+      ]
+    }
+  ]
+}

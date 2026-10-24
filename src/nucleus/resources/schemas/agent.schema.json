@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nucleus.example/schemas/agent.schema.json",
+  "allOf": [
+    {
+      "$ref": "registry-object.schema.json"
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "Agent"
+        },
+        "autonomyCeiling": {
+          "enum": [
+            "A0",
+            "A1",
+            "A2",
+            "A3"
+          ]
+        },
+        "instructionsFile": {
+          "type": "string"
+        },
+        "outputSchemaFile": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "autonomyCeiling",
+        "instructionsFile",
+        "outputSchemaFile"
+      ]
+    }
+  ]
+}

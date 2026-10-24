@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nucleus.example/schemas/data-domain.schema.json",
+  "allOf": [
+    {
+      "$ref": "registry-object.schema.json"
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "DataDomain"
+        },
+        "classification": {
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted"
+          ]
+        },
+        "stewardship": {
+          "type": "object",
+          "required": [
+            "accountableTeam",
+            "reviewCadence"
+          ],
+          "properties": {
+            "accountableTeam": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reviewCadence": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      },
+      "required": [
+        "classification",
+        "stewardship"
+      ]
+    }
+  ]
+}

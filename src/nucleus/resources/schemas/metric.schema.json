@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nucleus.example/schemas/metric.schema.json",
+  "allOf": [
+    {
+      "$ref": "registry-object.schema.json"
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "Metric"
+        },
+        "metricType": {
+          "enum": [
+            "measure",
+            "benchmark"
+          ]
+        },
+        "dataProductRef": {
+          "type": "string",
+          "pattern": "^registry://DataProduct/"
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "grain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "definitionFile": {
+          "type": "string"
+        },
+        "benchmarkOf": {
+          "type": "string",
+          "pattern": "^registry://Metric/"
+        }
+      },
+      "required": [
+        "metricType",
+        "dataProductRef",
+        "unit",
+        "grain",
+        "definitionFile"
+      ],
+      "if": {
+        "properties": {
+          "metricType": {
+            "const": "benchmark"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "benchmarkOf"
+        ]
+      }
+    }
+  ]
+}

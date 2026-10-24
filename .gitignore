@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+dist/
+build/
+.env
+.env.*
+*.secret*
+*.pem
+*.key
+*.p12
+*.pfx
+*.tfstate*
+*.tfplan*

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nucleus.example/schemas/tool.schema.json",
+  "allOf": [
+    {
+      "$ref": "registry-object.schema.json"
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "Tool"
+        },
+        "serverRef": {
+          "type": "string",
+          "pattern": "^registry://McpServer/"
+        },
+        "toolName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect": {
+          "enum": [
+            "read",
+            "propose",
+            "write"
+          ]
+        },
+        "approval": {
+          "enum": [
+            "not-required",
+            "required"
+          ]
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 300
+        },
+        "inputSchemaFile": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "serverRef",
+        "toolName",
+        "effect",
+        "approval",
+        "timeoutSeconds",
+        "inputSchemaFile"
+      ]
+    }
+  ]
+}
