@@ -12,6 +12,13 @@ from referencing import Registry, Resource
 from nucleus.skills import verify_bundled_candidate
 
 KINDS = {
+    "Decision": "decisions",
+    "Source": "sources",
+    "SchemaContract": "schema-contracts",
+    "Mapping": "mappings",
+    "Run": "runs",
+    "Artifact": "artifacts",
+    "Lineage": "lineage",
     "DataDomain": "data-domains",
     "DataProduct": "data-products",
     "Metric": "metrics",
@@ -22,6 +29,13 @@ KINDS = {
     "Agent": "agents",
 }
 SCHEMA_FILES = {
+    "Decision": "decision.schema.json",
+    "Source": "source.schema.json",
+    "SchemaContract": "schema-contract.schema.json",
+    "Mapping": "mapping.schema.json",
+    "Run": "run.schema.json",
+    "Artifact": "artifact.schema.json",
+    "Lineage": "lineage.schema.json",
     "DataDomain": "data-domain.schema.json",
     "DataProduct": "data-product.schema.json",
     "Metric": "metric.schema.json",

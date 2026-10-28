@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nucleus.example/schemas/schema-contract.schema.json",
+  "title": "Nucleus SchemaContract",
+  "allOf": [
+    {
+      "$ref": "registry-object.schema.json"
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "SchemaContract"
+        },
+        "project": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{2,30}$"
+        },
+        "contractFile": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "sourceRef": {
+          "type": "string",
+          "pattern": "^registry://(DataDomain|DataProduct|Metric|McpServer|Tool|Agent|Skill|Workflow|Source|SchemaContract|Mapping|Run|Artifact|Lineage)/[a-z][a-z0-9-]{2,62}@[0-9]+\\.[0-9]+\\.[0-9]+([+-][0-9A-Za-z.-]+)?$"
+        },
+        "origin": {
+          "enum": [
+            "published",
+            "inferred"
+          ]
+        },
+        "semanticStatus": {
+          "enum": [
+            "unknown",
+            "mapped"
+          ]
+        }
+      },
+      "required": [
+        "project",
+        "contractFile",
+        "sourceRef",
+        "origin",
+        "semanticStatus"
+      ]
+    }
+  ]
+}

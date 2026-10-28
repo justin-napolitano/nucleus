@@ -72,6 +72,13 @@ document skills with separate terms are excluded. See the
 
 ## Development
 
+The [shared schema and lineage catalog](docs/schema-lineage.md) adds project-scoped
+source, contract, mapping, run, artifact, lineage, and decision package contracts,
+plus an offline `nucleus snapshot` verifier. The hosted static review site and
+authenticated GitHub decision API described there are planned, not deployed.
+GitHub files, issues, and structured receipts are the planned metadata authority;
+Nucleus builds a rebuildable read projection without a dedicated database.
+
 ```bash
 .venv/bin/pip install -e '.[dev]'
 .venv/bin/pytest -q

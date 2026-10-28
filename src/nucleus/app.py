@@ -184,6 +184,11 @@ def make_server(catalog: Catalog, static: Path, port: int) -> ThreadingHTTPServe
 
 def main() -> None:
     """Run the local API or stdio MCP against an explicit empty-or-populated registry."""
+    if sys.argv[1:2] == ["snapshot"]:
+        from nucleus.evidence import main as evidence_main
+
+        evidence_main(sys.argv[2:])
+        return
     if sys.argv[1:2] == ["skills"]:
         from nucleus.skills import main as skills_main
 

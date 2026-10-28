@@ -49,6 +49,15 @@ async function load() {
       meta.className = "meta";
       meta.textContent = `${item.objectId} · ${item.state} · execution disabled`;
       card.append(type, heading, description, meta);
+      if (["Source", "SchemaContract", "Mapping", "Run", "Artifact", "Lineage", "Decision"].includes(item.kind)) {
+        const details = document.createElement("details");
+        const summary = document.createElement("summary");
+        summary.textContent = "View catalog evidence";
+        const definition = document.createElement("pre");
+        definition.textContent = JSON.stringify(item, null, 2);
+        details.append(summary, definition);
+        card.append(details);
+      }
       if (item.kind === "Skill" && item.state === "review") {
         const details = document.createElement("details");
         details.className = "skill-review";
