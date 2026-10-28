@@ -23,3 +23,10 @@ as ineligible for execution.
 The server binds to `127.0.0.1`. It rejects other Host authorities and
 cross-site browser requests. It has no login system, write API, provider
 connection, hosted execution route, or enterprise deployment profile.
+
+Project evidence kinds (`Source`, `SchemaContract`, `Mapping`, `Run`, `Artifact`,
+`Lineage`, `Decision`) are available through the same catalog routes and read-only
+MCP filters. The Library displays their package metadata and references. This is
+not yet a schema browser, graph traversal API, version diff, or decision write UI.
+Offline snapshot validation and the GitHub-driven delivery plan are documented in
+[schema-lineage.md](schema-lineage.md).

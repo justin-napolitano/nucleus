@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nucleus.example/schemas/run.schema.json",
+  "title": "Nucleus Run",
+  "allOf": [
+    {
+      "$ref": "registry-object.schema.json"
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "Run"
+        },
+        "project": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{2,30}$"
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "workerRevision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "outcome": {
+          "enum": [
+            "succeeded",
+            "failed",
+            "partial"
+          ]
+        }
+      },
+      "required": [
+        "project",
+        "runId",
+        "workerRevision",
+        "outcome"
+      ]
+    }
+  ]
+}
